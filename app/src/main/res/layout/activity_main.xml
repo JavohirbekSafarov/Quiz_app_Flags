@@ -24,26 +24,37 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="230dp"
-        android:layout_height="200dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text1"
         android:layout_marginTop="10dp"
-        android:src="@drawable/placeholder" />
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="270dp"
+            android:layout_height="200dp"
+            android:src="@drawable/placeholder"
+            android:scaleType="fitXY"/>
+
+    </androidx.cardview.widget.CardView>
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:orientation="vertical"
-        android:padding="30dp"
+        android:paddingHorizontal="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/card"
         android:layout_marginBottom="30dp">
 
         <RadioButton
@@ -60,7 +71,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/primarysecondColor"
             android:text="secondAnswer"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginVertical="5dp"/>
 
         <RadioButton
             android:id="@+id/thirdAnswer"
@@ -76,10 +88,31 @@
             android:layout_height="wrap_content"
             android:textColor="@color/primarysecondColor"
             android:text="fourthAnswer"
+            android:layout_marginTop="5dp"
             android:textSize="20dp" />
     </RadioGroup>
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toTopOf="@+id/radioGroup"
+        android:layout_marginEnd="30dp">
+
+        <ImageView
+            android:id="@+id/checkCorrectIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/correct"
+            android:visibility="invisible"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:gravity="center"
@@ -97,6 +130,7 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:text="Finish"
+            android:background="@drawable/buttons"
             android:textAllCaps="false" />
 
         <Button
@@ -105,9 +139,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:enabled="false"
             android:text="Next"
-            android:textAllCaps="false"
-            android:enabled="false"/>
+            android:background="@drawable/buttons"
+            android:textAllCaps="false" />
 
 
     </LinearLayout>

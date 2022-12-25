@@ -31,6 +31,7 @@ public class GameOverActivity extends AppCompatActivity {
         binding.correctAnswers.setText("You answered " +  correctAnswers + " out of 10 questions correctly!");
         binding.tryAgainbtn.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
     }
 }

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -54,57 +56,57 @@ public class MainActivity extends AppCompatActivity {
             switch (binding.radioGroup.getCheckedRadioButtonId()){
                 case R.id.firstAnswer:
                     if (binding.firstAnswer.getText().toString().equals(correctAnswer.toString())){
-                        showMessage("You answered correctly!");
                         correctAnswers++;
+                        showIconOfAnswer(1, true);
                         YoYo.with(Techniques.Bounce)
                                 .duration(1000) //700
                                 .repeat(1)
                                 .playOn(findViewById(R.id.correctAnswer));
                         generateQuestion();
                     }else {
-                        showMessage("You gave the wrong answer");
+                        showIconOfAnswer(1, false);
                         generateQuestion();
                     }
                     break;
                 case R.id.secondAnswer:
                     if (binding.secondAnswer.getText().toString().equals(correctAnswer.toString())){
-                        showMessage("You answered correctly!");
                         correctAnswers++;
+                        showIconOfAnswer(2, true);
                         YoYo.with(Techniques.Bounce)
                                 .duration(1000) //700
                                 .repeat(1)
                                 .playOn(findViewById(R.id.correctAnswer));
                         generateQuestion();
                     }else {
-                        showMessage("You gave the wrong answer");
+                        showIconOfAnswer(2, false);
                         generateQuestion();
                     }
                     break;
                 case R.id.thirdAnswer:
                     if (binding.thirdAnswer.getText().toString().equals(correctAnswer.toString())){
-                        showMessage("You answered correctly!");
                         correctAnswers++;
+                        showIconOfAnswer(3, true);
                         YoYo.with(Techniques.Bounce)
                                 .duration(1000) //700
                                 .repeat(1)
                                 .playOn(findViewById(R.id.correctAnswer));
                         generateQuestion();
                     }else {
-                        showMessage("You gave the wrong answer");
+                        showIconOfAnswer(3, false);
                         generateQuestion();
                     }
                     break;
                 case R.id.fourthAnswer:
                     if (binding.fourthAnswer.getText().toString().equals(correctAnswer.toString())){
-                        showMessage("You answered correctly!");
                         correctAnswers++;
+                        showIconOfAnswer(4, true);
                         YoYo.with(Techniques.Bounce)
                                 .duration(1000) //700
                                 .repeat(1)
                                 .playOn(findViewById(R.id.correctAnswer));
                         generateQuestion();
                     }else {
-                        showMessage("You gave the wrong answer");
+                        showIconOfAnswer(4, false);
                         generateQuestion();
                     }
                     break;
@@ -166,7 +168,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showMessage(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    private void showIconOfAnswer(int position, boolean isCorrect){
+        switch (position){
+            case 1:
+                binding.checkCorrectIV.setY(binding.firstAnswer.getY());
+                break;
+            case 2:
+                binding.checkCorrectIV.setY(binding.secondAnswer.getY());
+                break;
+            case 3:
+                binding.checkCorrectIV.setY(binding.thirdAnswer.getY());
+                break;
+            case 4:
+                binding.checkCorrectIV.setY(binding.fourthAnswer.getY());
+                break;
+        }
+
+        if (isCorrect)
+            binding.checkCorrectIV.setImageResource(R.drawable.correct);
+        else
+            binding.checkCorrectIV.setImageResource(R.drawable.wrong);
+
+        binding.checkCorrectIV.setVisibility(View.VISIBLE);
+
+        CountDownTimer countDownTimer = new CountDownTimer(1200, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                binding.checkCorrectIV.setVisibility(View.INVISIBLE);
+            }
+        }.start();
     }
 }
